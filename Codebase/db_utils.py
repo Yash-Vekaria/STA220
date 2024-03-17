@@ -2,6 +2,7 @@ import sys
 import csv
 import pandas as pd
 sys.path.insert(0, '/Users/akhilvelamati/Downloads/AdvDS-Analysis-master/venv/lib/python3.9/site-packages')
+sys.path.insert(0, '/usr/local/mysql/bin')
 import pymysql
 
 
@@ -14,7 +15,7 @@ class YelpDb:
         """
         self.host = "localhost"
         self.user = "root"
-        self.password = "Password"
+        self.password = "password"
         self.db = db_name
         self.charset = 'utf8'
         self.conn = pymysql.connect(host=self.host,

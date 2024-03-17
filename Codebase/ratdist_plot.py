@@ -20,7 +20,8 @@ class RatdistPlot:
         if "Unknown" in x_axis:
             x_axis.pop("Unknown")
         x_axis = x_axis.sort_index()
-        ax = sns.barplot(x_axis.index, x_axis.values, alpha=0.8)
+        ax = sns.barplot(x_axis.values, alpha=0.8)
+        # ax = sns.barplot(x_axis.index, x_axis.values, alpha=0.8)
         plt.title(title, fontsize=font_size)
         plt.xlabel("Restaurants Ratings", fontsize=font_size)
         plt.ylabel("Rating Counts", fontsize=font_size)

@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0, '/Users/akhilvelamati/Downloads/AdvDS-Analysis-master/venv/lib/python3.9/site-packages')
+sys.path.insert(0, '/Users/yvekaria/Documents/PhD Course Work/STA 220 Data & Web Technologies for Data Science/Project/YelpTest/STA220/Build_Crawler')
 import scrapy
 import re
 from Yelp.items import YelpItem, ReviewItem
@@ -34,7 +34,8 @@ class YelpSpider(scrapy.Spider):
         choose the urls to start from
         """
         cities = []
-        with open("/Users/akhilvelamati/Downloads/AdvDS-Analysis-master/Database/cities_csv/cities_of_CA.csv", "r") as f:
+        with open("/Users/yvekaria/Documents/PhD Course Work/STA 220 Data & Web Technologies for Data Science/Project/YelpTest/STA220/Database/cities_csv/cities_of_CA.csv", "r") as f:
+            # with open("/Users/akhilvelamati/Downloads/AdvDS-Analysis-master/Database/cities_csv/cities_of_CA.csv", "r") as f:
             for line in f:
                 cities.append(line.strip())
         
@@ -82,6 +83,9 @@ class YelpSpider(scrapy.Spider):
             url = "https://www.yelp.com" + place_url
             #url = place_url
             self.logger.info(f"Constructetfd URL: {url}")
+            f = open("/Users/yvekaria/Documents/PhD Course Work/STA 220 Data & Web Technologies for Data Science/Project/YelpTest/STA220/AmenitiesCrawler/restaurant_urls.txt", "a+")
+            f.write(f"{url}\n")
+            f.close()
             yield scrapy.Request(url, meta={"city": city}, callback=self.parse2)
 
         try:
@@ -121,7 +125,7 @@ class YelpSpider(scrapy.Spider):
         # item["Category"] = place.xpath("//a[@class='css-19v1rkv']").extract_first()
         # item["Address"] = place.xpath("//p[@class='css-qyp8bo']").extract_first()
 
-        item["Name"] = place.xpath("//h1[@class='css-1se8maq']/text()").get()
+        item["Name"] = place.xpath("//h1[@class='css-hnttcw']/text()").get() # css-1se8maq
         self.logger.info(f"NAMEIS:{item['Name']}")
         item["Rating"] = place.xpath("//a[contains(@class, 'css-19v1rkv')]/text()").get()
         #self.logger.info(f"RATED:{item['Rating']}")

@@ -5,7 +5,8 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 import sys
-sys.path.insert(0, '/Users/akhilvelamati/Downloads/AdvDS-Analysis-master/venv/lib/python3.9/site-packages')
+# sys.path.insert(0, '/Users/akhilvelamati/Downloads/AdvDS-Analysis-master/venv/lib/python3.9/site-packages')
+sys.path.insert(0, '/Users/yvekaria/Documents/PhD Course Work/STA 220 Data & Web Technologies for Data Science/Project/YelpTest/STA220/Build_Crawler')
 # Now you can import the module
 from scrapy.exporters import CsvItemExporter
 import pymysql
@@ -43,7 +44,7 @@ class CsvPipeline(object):
 class MysqlPipeline(object):
 
     def __init__(self):
-        self.conn = pymysql.connect(host='localhost',user='root',password='Password',database='yelp_db')
+        self.conn = pymysql.connect(host='localhost',port=3306,user='root',password='password',database='yelp_db')
         self.cursor = self.conn.cursor()
 
     def process_item(self, item, spider):
