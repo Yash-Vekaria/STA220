@@ -90,7 +90,7 @@ In this project, we choose to perform above strategies on Yelp (https://www.yelp
 - 4. Codebase
     - There following .py file lives in this folder:
         - db_utils.py: Use for database (SQL server) connection and extract data into dataframe for analysis.
-        - helper_fe.py: contained all data cleaning and feature engineering.
+        - Feature_Engineering.py: contained all data cleaning and feature engineering.
         - ratdist_plot.py: ratings distribution plots
         - category_plot.py: categorical plots
         - ophrs_plot.py: operation hrs plots
