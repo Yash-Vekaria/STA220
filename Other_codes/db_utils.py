@@ -10,7 +10,7 @@ class YelpDb:
     def __init__(self, db_name):
         self.host = "localhost"
         self.user = "root"
-        self.password = "Purnaseshi128"
+        self.password = "password"
         self.db = db_name
         self.charset = 'utf8'
         self.conn = pymysql.connect(host=self.host,
