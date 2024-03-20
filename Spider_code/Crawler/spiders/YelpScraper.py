@@ -2,6 +2,7 @@ import sys
 sys.path.insert(0, '/Users/av/Documents/GitHub/STA220/Spider_code')
 import scrapy
 import re
+import os
 from Crawler.items import YelpItem
 from urllib.parse import quote
 
@@ -12,8 +13,9 @@ class YelpScraper(scrapy.Spider):
 
     def start_requests(self):
         cities = []
-        #with open("/Users/yvekaria/Documents/PhD Course Work/STA 220 Data & Web Technologies for Data Science/Project/YelpTest/STA220/Stored_Info/Locations/CA.csv", "r") as f:
-        with open("/Users/av/Documents/GitHub/STA220/Stored_Info/Locations/CA.csv", "r") as f:
+        curr_path = os.path.abspath(os.path.join("..", "Stored_Info", "Locations", "CA.csv"))
+        self.logger.info(f"PATH: {curr_path}")
+        with open(curr_path, "r") as f:
             for line in f:
                 cities.append(line.strip())
         
@@ -46,7 +48,8 @@ class YelpScraper(scrapy.Spider):
             url = "https://www.yelp.com" + place_url
             #url = place_url
             self.logger.info(f"Constructetfd URL: {url}")
-            f = open("/Users/av/Documents/GitHub/STA220/Webpagefeatures/restaurant_urls.txt", "a+")
+            url_path = os.path.abspath(os.path.join("..", "Webpagefeatures", "restaurant_urls.txt"))
+            f = open(url_path, "a+")
             f.write(f"{url}\n")
             f.close()
             yield scrapy.Request(url, meta={"city": city}, callback=self.parse2)
