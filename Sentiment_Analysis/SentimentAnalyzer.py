@@ -122,16 +122,32 @@ def get_reviews(url):
     precise_num_reviews = int(str(driver.find_element(By.XPATH, '//a[@href="#reviews"]').text).replace(" reviews)", "").replace("(", "").replace(",", ""))
     # print(restaurant_name, precise_net_rating, precise_num_reviews)
 
-    scroll_page_to_explore(driver, 3, 1.5, "window.scrollTo(0, (document.body.scrollHeight)/(3));")
-    scroll_page_to_explore(driver, 3, 1.5, "window.scrollTo(0, (document.body.scrollHeight)/(1.5));")
-    scroll_page_to_explore(driver, 3, 1.5, "window.scrollTo(0, (document.body.scrollHeight)/(1.15));")
+    # num_reviews = int(str(driver.find_element(By.XPATH, '//section[@aria-label="Recommended Reviews"]//p[contains(text()," reviews")]').text).replace(" reviews", ""))
+    # review_all_data = str(driver.find_element(By.XPATH, '//section[@aria-label="Recommended Reviews"]').text)
 
-    num_reviews = int(str(driver.find_element(By.XPATH, '//section[@aria-label="Recommended Reviews"]//p[contains(text()," reviews")]').text).replace(" reviews", ""))
-    rating_elements = driver.find_elements(By.XPATH, '//section[@aria-label="Recommended Reviews"]//div/span/div[contains(@aria-label, " star rating")]')
-    review_ratings = [int(str(ele.get_attribute("aria-label")).replace(" star rating", "")) for ele in rating_elements[1:]]
-    review_elements = driver.find_elements(By.XPATH, '//section[@aria-label="Recommended Reviews"]//p[contains(@class, "comment_")]//span[@lang="en"]')
-    reviews = [str(ele.text) for ele in review_elements]
-    review_all_data = str(driver.find_element(By.XPATH, '//section[@aria-label="Recommended Reviews"]').text)
+    review_ratings = []
+    reviews = []
+    for i in range(5):
+
+        scroll_page_to_explore(driver, 3, 1.5, "window.scrollTo(0, (document.body.scrollHeight)/(3));")
+        scroll_page_to_explore(driver, 3, 1.5, "window.scrollTo(0, (document.body.scrollHeight)/(1.5));")
+        scroll_page_to_explore(driver, 3, 1.5, "window.scrollTo(0, (document.body.scrollHeight)/(1.15));")
+
+        temp_rating_elements = driver.find_elements(By.XPATH, '//section[@aria-label="Recommended Reviews"]//div/span/div[contains(@aria-label, " star rating")]')
+        temp_review_ratings = [int(str(ele.get_attribute("aria-label")).replace(" star rating", "")) for ele in temp_rating_elements[1:]]
+        temp_review_elements = driver.find_elements(By.XPATH, '//section[@aria-label="Recommended Reviews"]//p[contains(@class, "comment_")]//span[@lang="en"]')
+        temp_reviews = [str(ele.text) for ele in temp_review_elements]
+
+        if len(temp_review_ratings) == len(temp_reviews):
+            review_ratings.extend(temp_review_ratings)
+            reviews.extend(temp_reviews)
+
+        arrow_buttons = driver.find_elements(By.XPATH, '//span[contains(@class, "navigation-button-icon")]')
+        if len(arrow_buttons) == 2:
+            arrow_buttons[1].click()
+        else:
+            break;
+
 
     review_to_ratings = {}
     for rev in reviews:
@@ -149,7 +165,7 @@ def main():
     restaurant_url = 'https://www.yelp.com/biz/the-bird-san-francisco?osq=Star+chicken'
     restaurant, ratings, reviews, recommended_reviews = get_reviews(restaurant_url)
     print(f"Restaurant::{restaurant}, Ratings::{ratings}, Total Reviews::{reviews}\n")
-    print(recommended_reviews)
+    print(f"Number of reviews extracted: {len(recommended_reviews)}")
 
     # Perform sentiment analysis on the website
     sa = SentimentAnalyzer(list(recommended_reviews.keys()))
