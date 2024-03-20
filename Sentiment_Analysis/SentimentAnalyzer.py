@@ -10,8 +10,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
+import matplotlib
 import pandas as pd
 from textblob import TextBlob
+from wordcloud import WordCloud
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from sklearn.metrics import accuracy_score
@@ -82,6 +84,45 @@ class SentimentAnalyzer():
         best_negative_words = sorted(feature_to_coef.items(), key=lambda x: x[1])[:20]
 
         return best_postive_words, best_negative_words
+
+    def generate_word_cloud(self, positive_words, negative_words):
+        '''
+        Function to generate two word clouds from the list of positive and negative words using their frequency distribution in review texts
+        '''
+
+        # Combine all reviews into a single string
+        all_reviews = ' '.join([self.remove_stop_words(rev) for rev in self.reviews])
+
+        # Calculate frequency distribution of the words
+        word_freq_dist = nltk.FreqDist(nltk.word_tokenize(all_reviews.lower()))
+        positive_freq = {word: word_freq_dist[word] for word in positive_words}
+        negative_freq = {word: word_freq_dist[word] for word in negative_words}
+
+        # Generate the word cloud for positive words
+        positive_wordcloud = WordCloud(width=800, height=400, background_color='white')
+        positive_wordcloud.generate_from_frequencies(positive_freq)
+        positive_wordcloud.to_file('../Images/positive_wordcloud.png')
+
+        # Generate the word cloud for negative words
+        negative_wordcloud = WordCloud(width=800, height=400, background_color='white')
+        negative_wordcloud.generate_from_frequencies(negative_freq)
+        negative_wordcloud.to_file('../Images/negative_wordcloud.png')
+
+        # If needed, display the word clouds
+        '''
+        plt.figure(figsize=(10, 5))
+        plt.subplot(1, 2, 1)
+        plt.imshow(positive_wordcloud, interpolation='bilinear')
+        plt.axis('off')
+        plt.title('Positive Word Cloud')
+
+        plt.subplot(1, 2, 2)
+        plt.imshow(negative_wordcloud, interpolation='bilinear')
+        plt.axis('off')
+        plt.title('Negative Word Cloud')
+        plt.show()
+        '''
+        return
 
 
 
@@ -179,10 +220,14 @@ def main():
     best_positive_words, best_negative_words = sa.get_best_positive_best_negative_words()
     # print(best_positive_words, best_negative_words)
 
-    positive_words = [str(word[0]) for word in best_positive_words]
-    negative_words = [str(word[0]) for word in best_negative_words]
+    stop_words = set(stopwords.words('english'))
+    positive_words = [str(word[0]) for word in best_positive_words if str(word[0]).lower() not in stop_words]
+    negative_words = [str(word[0]) for word in best_negative_words if str(word[0]).lower() not in stop_words]
     print(f"\nRepresentative Positive Words: {', '.join(positive_words)}")
     print(f"\nRepresentative Negative Words: {', '.join(negative_words)}")
+
+    # Generate word clouds of positive and negative words
+    sa.generate_word_cloud(positive_words, negative_words)
 
     return;
 
