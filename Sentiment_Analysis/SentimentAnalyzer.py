@@ -182,7 +182,7 @@ def main():
     positive_words = [str(word[0]) for word in best_positive_words]
     negative_words = [str(word[0]) for word in best_negative_words]
     print(f"\nRepresentative Positive Words: {', '.join(positive_words)}")
-    print(f"\nRepresentative Positive Words: {', '.join(negative_words)}")
+    print(f"\nRepresentative Negative Words: {', '.join(negative_words)}")
 
     return;
 
