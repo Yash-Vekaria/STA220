@@ -15,7 +15,7 @@ class YelpPipeline(object):
 
 class MysqlPipeline(object):
     def __init__(self):
-        self.conn = pymysql.connect(host='localhost',port=3306,user='root',password='Purnaseshi128',database='yelp_db')
+        self.conn = pymysql.connect(host='localhost',port=3306,user='root',password='password',database='yelp_db')
         self.cursor = self.conn.cursor()
     def process_item(self, item, spider):
         if item.Start_Table_Creation_Process():
