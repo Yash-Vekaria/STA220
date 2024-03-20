@@ -5,7 +5,7 @@ sys.path.insert(0, '/Users/akhilvelamati/Downloads/AdvDS-Analysis-master/venv/li
 sys.path.insert(0, '/usr/local/mysql/bin')
 import pymysql
 
-
+# Class for database functionality
 class YelpDb:
     def __init__(self, db_name):
         self.host = "localhost"
@@ -19,6 +19,8 @@ class YelpDb:
                                     db=self.db,
                                     charset=self.charset)
         self.cursor = self.conn.cursor()
+        
+# Functions to process commands
         
     def execute(self, sql):
         try:

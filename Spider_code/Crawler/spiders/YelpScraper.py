@@ -11,6 +11,7 @@ class YelpScraper(scrapy.Spider):
     name = "YelpScraper"
     scrap_reviews = True
 
+#Function to take the list of cities to scrap data
     def start_requests(self):
         cities = []
         curr_path = os.path.abspath(os.path.join("..", "Stored_Info", "Locations", "CA.csv"))
@@ -19,6 +20,7 @@ class YelpScraper(scrapy.Spider):
             for line in f:
                 cities.append(line.strip())
         
+#Constructing the URL and preparing it for the spider to crawl
         url_start = 'https://www.yelp.com/search?'
         for city in cities[:12]:  
             self.logger.info(f"city is {city}")
@@ -29,6 +31,7 @@ class YelpScraper(scrapy.Spider):
             self.logger.info(f"Constructed URL: {url}")
             yield scrapy.Request(url, meta={"city": city, "first_page": True}, callback=self.parse)
 
+#Function to parse the list of restaurants url
     def parse(self, response):
         self.logger.debug(f"Meta content: {response.meta}")
         city = response.meta["city"]
@@ -46,14 +49,13 @@ class YelpScraper(scrapy.Spider):
         self.logger.info(f"NeXT ONE:{place_urls}")
         for place_url in place_urls:
             url = "https://www.yelp.com" + place_url
-            #url = place_url
             self.logger.info(f"Constructetfd URL: {url}")
             url_path = os.path.abspath(os.path.join("..", "Webpagefeatures", "restaurant_urls.txt"))
             f = open(url_path, "a+")
             f.write(f"{url}\n")
             f.close()
             yield scrapy.Request(url, meta={"city": city}, callback=self.parse2)
-
+#Code snippet to check if a perticular web page has link to go to next page of restaurants
         try:
             next_link = res.xpath("//a[contains(@class, 'next-link')]/@href").extract_first()
             #next_url = "https://www.yelp.com" + next_link
@@ -63,13 +65,15 @@ class YelpScraper(scrapy.Spider):
         except TypeError:
             pass
 
+#Function to crawl and parse the information on each restaurant's page
     def parse2(self, response):
         #self.logger.debug(f"Meta content: {response.meta}")
         place = scrapy.Selector(response)
         #self.logger.debug(f"theplace: {place}")
         item = YelpItem()
-        item["City"] = response.meta["city"]
 
+        #Information scraped from each website
+        item["City"] = response.meta["city"]
         item["Name"] = place.xpath("//h1[@class='css-hnttcw']/text()").get()
         self.logger.info(f"NAMEIS:{item['Name']}")
         item["Rating"] = place.xpath("//a[contains(@class, 'css-19v1rkv')]/text()").get()

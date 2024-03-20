@@ -4,6 +4,9 @@ import numpy as np
 import sys
 sys.path.insert(0, '/Users/akhilvelamati/Downloads/AdvDS-Analysis-master/venv/lib/python3.9/site-packages')
 
+
+# Below are the functions developed to handle some data processing activities
+
 def find_null(item):
     if not item or (type(item)!=str and np.isnan(item)) or (type(item)==str 
                                                             and item.strip().lower()in ['null', 'none']):
@@ -20,6 +23,7 @@ def exceptions(data, verbose=False):
     if verbose:
         print('No exceptions detected')
 
+# Function to get just the ZIP code number from the column in the dataframe
 def get_ZIP(item):
     zip_code = item.split(',')[-1]
     if re.search(r'\d{5}', zip_code):

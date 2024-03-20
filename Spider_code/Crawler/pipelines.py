@@ -13,6 +13,9 @@ class YelpPipeline(object):
     def process_item(self, item, spider):
         return item
 
+#Code for conecting to the database and processing commands
+    
+# Please make sure to update the information as per your system
 class MysqlPipeline(object):
     def __init__(self):
         self.conn = pymysql.connect(host='localhost',port=3306,user='root',password='password',database='yelp_db')
