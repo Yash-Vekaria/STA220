@@ -11,7 +11,7 @@ class YelpScraper(scrapy.Spider):
     name = "YelpScraper"
     scrap_reviews = True
 
-#Function to take the list of cities to scrap data
+#Function to take the list of cities to scrap data.
     def start_requests(self):
         cities = []
         curr_path = os.path.abspath(os.path.join("..", "Stored_Info", "Locations", "CA.csv"))
