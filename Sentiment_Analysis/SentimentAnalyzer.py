@@ -78,8 +78,10 @@ class SentimentAnalyzer():
         final_model = LogisticRegression(C=0.05)
         final_model.fit(X_train, y_train)
         print ("\nFinal Accuracy: %s" % accuracy_score(y_test, final_model.predict(X_test)))
-
-        feature_to_coef = {word: coef for word, coef in zip(cv.get_feature_names(), final_model.coef_[0])}
+        try:
+            feature_to_coef = {word: coef for word, coef in zip(cv.get_feature_names(), final_model.coef_[0])}
+        except:
+            feature_to_coef = {word: coef for word, coef in zip(cv.get_feature_names_out(), final_model.coef_[0])}
         best_postive_words = sorted(feature_to_coef.items(), key=lambda x: x[1], reverse=True)[:20]
         best_negative_words = sorted(feature_to_coef.items(), key=lambda x: x[1])[:20]
 
