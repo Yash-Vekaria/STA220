@@ -1,4 +1,4 @@
-## Steps to Run Our Project:
+## Steps to Run Our Project
 
 In order to reproduce the code, follow the below steps:
 1) Create a virtual environment using the ```virtualenv venv``` and activate it using ```source venv/bin/activate```. Then install the required libraries from the requirements.txt file using the command ```pip install -r requirements.txt```
