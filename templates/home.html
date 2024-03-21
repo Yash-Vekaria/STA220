@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="content">
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('visualization') }}">Visualization</a></li>
+            <li><a href="{{ url_for('sentiment_analysis') }}">Sentiment Analysis</a></li>
+        </ul>
+    </nav>
+    <h1>Yelp Data Analysis</h1>
+
+</div>
+<hr>
+<p class="p-home">The aim of this project is to analyze top restaurants in several of California's well-known cities, offering valuable insights for both consumers and prospective restaurateurs. Our project merges advanced data and sentiment analysis to draw comprehensive insights from Yelp, offering valuable perspectives for both prospective and established restaurant owners. Focusing on California's major cities, we aim to map out the culinary landscape through EDA and a new sentiment analysis model that evaluates real-time Yelp reviews. The culmination of our research is manifested in an interactive website that not only presents our analytical findings in a visually engaging manner but also features a sentiment analysis tool, thereby demonstrating the practical application of our analytical methodologies, offering invaluable insights into consumer preferences and contributing to better understanding of a restaurant's performance.
+</p>
+    <!-- Add project information here -->
+</body>
+</html>

@@ -1,0 +1,189 @@
+body {
+  position: relative;
+  margin: 0; /* Reset default margin */
+  margin-bottom: 50px;
+  background-color: #f4f4f4; /* Light beige background */
+  color: #333; /* Dark grey text color */
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  font-size: 70px; /* Adjust the font size as needed */
+  font-family: 'Apple Chancery', cursive;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+form {
+  text-align: center;
+}
+
+button {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.output {
+  margin-top: 20px;
+}
+.navbar {
+  background-color: #d8d8d8a9;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  z-index: 100; /* Ensure the navbar is above other elements */
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  display: inline;
+  margin-right: 10px; /* Adjust spacing between buttons */
+}
+
+.navbar a {
+  color: #333; /* Set button text color */
+  text-decoration: none;
+  padding: 5px 10px; /* Adjust button padding */
+  border-radius: 5px; /* Optional: Rounded corners for buttons */
+  
+}
+
+.navbar a:hover {
+  background-color: #bbb; /* Change background color on hover */
+}
+.content {
+  background-color: #fff;
+  padding: 20px;
+  padding-top: 70px; /* Adjust to accommodate the navbar height */
+  margin-top: 50px;
+}
+
+.content h1 {
+  margin-bottom: 10px;
+}
+
+hr {
+  border: 0;
+  border-top: 2px solid pink; /* Adjust thickness and color as needed */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.card-container {
+  display: flex;
+  flex-direction: column; /* Change flex direction to column */
+  align-items: center; /* Center align items vertically */
+}
+
+.card {
+  width: 1000px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; /* Add margin to create space between cards */
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 5px 5px 0 0; /* Add a border at the bottom of the image */
+}
+
+.card-text {
+  padding: 10px;
+}
+
+.card-text p {
+  margin-top: 10px;
+  margin: 0;
+  color: #555; /* Change text color to ensure visibility */
+  font-size: 16px; /* Adjust font size as needed */
+  padding: 10px;
+}
+.sentform {
+  position: absolute;
+  top: 60px; /* Adjust based on navbar height */
+  left: 0;
+  padding: 20px;
+}
+
+.sentform p {
+  margin-bottom: 5px; /* Reduce space below the paragraph */
+}
+
+input[type="text"] {
+  display: block; /* Makes the input block level for full width */
+  width: calc(100% - 20px); /* Adjusts width to fit parent, accounting for padding */
+  margin: 0 0 10px; /* Removes margin from the top, adds some to the bottom */
+  padding: 5px; /* Adds some padding inside the input for text */
+}
+.data-card-row {
+  display: flex;
+}
+
+.data-card {
+  display: flex; /* Use flexbox */
+  align-items: center; /* Align items vertically */
+  background-color: lightblue;
+  border-radius: 5px;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.data-card-value {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.data-card-description {
+  font-size: 16px;
+  margin-left: 10px; /* Add margin to separate value and description */
+}
+
+.wordclouds {
+  display: flex;
+  margin-top: 20px;
+}
+
+.wordcloud {
+  margin-right: 20px; /* Adjust the spacing between the word clouds */
+}
+
+.wordcloud img {
+  max-width: 100%; /* Ensure the image fits within its container */
+  height: auto;
+  border: 4px solid  #54eb60;
+}
+.wordcloud p {
+  margin-top: 1px; /* Adjust the margin as needed */
+}
+
+.analysis-info {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 20px;
+}
+.divider {
+  border: none;
+  border-top: 2px solid pink; /* Pink horizontal line */
+  margin-top: 10px; /* Adjust the margin-top as needed */
+}
+.p-home {
+  text-align: center; /* Align text to center */
+  max-width: 800px; /* Set maximum width */
+  margin: 0 auto; /* Center horizontally */
+}

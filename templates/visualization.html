@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Visualization of Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('visualization') }}">Visualization</a></li>
+            <li><a href="{{ url_for('sentiment_analysis') }}">Sentiment Analysis</a></li>
+        </ul>
+    </nav>
+    <h1>Visualization of Analysis</h1>
+    <div class="card-container">
+        <!-- Card 1 -->
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/1_bar_number_of_restaurants_per_city.png') }}" alt="Image 1">
+            <hr class="divider">
+            <div class="card-text">
+                <p> The bar chart displays total number of restaurants we were able to scrape for each city. 
+                    On an average 200 restaurants were scraped per city.  
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/2_bar_overall_rating_distribution.png') }}" alt="Image 2">
+            <hr class="divider">
+            <div class="card-text">
+                <p>The image shows the distribution of the “Rating” for all the restaurants present in the dataset. 
+                    It can be visualized that the data is left skewed, with the majority of the ratings present between 3.5 to 5.0 or more precisely between 3.8 to 4.8.
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/3_bars_rating_distribution_by_city_1.png') }}" alt="Image 2">
+            </div>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/4_bar_number_of_restaurants_per_city_2.png') }}" alt="Image 2">
+            <hr class="divider">
+            <div class="card-text">
+                <p>The plots show the distribution of “Rating” for each city individually. Main observations were:
+                    <ul>
+                        <li>Generally, Los Angeles, San Diego, San Francisco, Oakland have the lowest proportion of restaurants with ratings below 4.0.</li>
+                        <li>Fresno, Bakersfield, and Riverside have more frequency of low ratings restaurants compared with other cities.</li>
+                        <li>San Francisco and Oakland have relatively uniform rating distributions.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/5_bar_top_30_overall_word_categories.png') }}" alt="Image 2">
+            <hr class="divider">
+            <div class="card-text">
+                <p>The visualization gave us an insight that quick snack places, such as brunch, breakfast, cocktail bars are some of the categories of restaurants that are most frequent in the full dataset of restaurants collected.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/6_bar_top_10_word_categories_by_city_1.png') }}" alt="Image 2">
+            
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/7_bar_top_10_word_categories_by_city_2.png') }}" alt="Image 2">
+            <hr class="divider">
+            <div class="card-text">
+                <p> The figure depicts the top 10 categories/cuisines of restaurants in each of the cities and the number of restaurants belonging in that particular category. 
+                    Observations made were:
+                    <ul>
+                        <li>Cocktail bars seem to be present in almost all of the major cities.</li>
+                        <li>Restaurants which have breakfast and brunch availability seem to have the highest footfall.</li>
+                        <li>Mexican cuisine seems to be another common cuisine in these cities. </li>
+                        <li>Apart from Santa Ana and Riverside, all the other cities seem to have new American restaurants with a higher footfall.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/8_bar_top_10_word_categories_by_ratings_by_city_1.png') }}" alt="Image 2">
+            
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/9_bar_top_10_word_categories_by_ratings_by_city_2.png') }}" alt="Image 2">
+            <hr class="divider">
+            <div class="card-text">
+                <p>The figure shows the Top 10 categories of restaurants with the highest rating in each city.
+                    The major observations were: 
+                    <ul>
+                        <li>San Francisco seems to have wide variety of asian cuisines</li>
+                        <li>Fresno doesn't seem to have much diversity when it comes to variety of restaurants</li>
+                        <li>Food trucks and pop-up restaurants seemed to be more common in these cities than we expected them to be</li>
+
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/10_bar_top_10_word_categories_by_reviews_by_city_1.png') }}" alt="Image 2">
+            
+            </div>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/11_bar_top_10_word_categories_by_reviews_by_city_2.png') }}" alt="Image 2">
+            <hr class="divider">
+            <div class="card-text">
+            <p>The plot confirms the former findings and confirms the following:
+                <ul>
+                    <li>Cocktail bars seem to be present in almost all of the major cities.</li>
+                    <li>Restaurants which have breakfast and brunch availability seem to have the highest footfall.</li>
+                    <li>Mexican cuisine seems to be another common cuisine in these cities.</li>
+                    <li>Apart from Santa Ana and Riverside, all the other cities seem to have new American restaurants with a higher footfall.</li>
+                </ul>
+            </p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/12_wordcloud_word_categories.png') }}" alt="Image 2">
+            <hr class="divider">
+            <div class="card-text">
+                <p> Figure shows the word cloud generated, for the top 30 categories. As we observed previously, Brunch, Breakfast, New American and Cocktail-bars seem to have the highest frequency, followed by Mexican, seafood, sandwiches and so on.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/13_top25_most_popular_restaurants_with_most_reviews.png') }}" alt="Image 2">
+            <hr class="divider">
+            <div class="card-text">
+                <p>The weighted pie chart, shows the top 25 restaurants with the highest number of reviews.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/14_top25_effect_of_price_with_ratings.png') }}" alt="Image 2">
+            <hr class="divider">
+            <div class="card-text">
+                <p>Bar chart displays what price baskets each of the 25 restaurants would fall under, taking their rating into consideration.
+                    The observations made were:
+                    <ul>
+                        <li>As per our estimation, very expensive restaurants did not come in the top 25. This was expected because when a restaurant falls under the ultra premium ($$$$) category, it would not have the highest reviews, as it wouldn't be accessible to everyone. </li>
+                        <li>To our surprise, out of the 25 restaurants, only 2 came under the premium segment ($$$), and they weren't even the highest rated among the 25.</li>
+                        <li>The maximum number of restaurants (20) belonged to the fairly priced category ($$), and their ratings varied from 4.1 to 4.7.</li>
+
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/15_geomap_average_ratings_by_county.png') }}" alt="Image 2">
+            <hr class="divider">
+            <div class="card-text">
+                <p> Figure show the plotting for the restaurants in all the counties in the dataset, with the colors indicating the average rating for all the restaurants in that particular postal code. Upon visualizing, we observed that the average rating for the restaurants varied from 3.8 and went till 4.8.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Add analysis visualization and description here -->
+</body>
+</html>

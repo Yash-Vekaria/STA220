@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sentiment Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('visualization') }}">Visualization</a></li>
+            <li><a href="{{ url_for('sentiment_analysis') }}">Sentiment Analysis</a></li>
+        </ul>
+    </nav>
+    <div class="sentform">
+        <h1>Sentiment Analysis</h1>
+        <p>Enter yelp url for the restaurant:</p>
+        <form method="post">
+            <input type="text" name="restaurant_link" placeholder="Enter restaurant link" required>
+            <button type="submit">Submit</button>
+        </form>
+        {% if output %}
+        <div class="output">
+            <div class="data-card-row">
+                <div class="data-card">
+                    <div class="data-card-value">{{ output['restaurant'] }}</div>
+                    <div class="data-card-description">Name of restaurant</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-card-value">{{ output['ratings'] }}</div>
+                    <div class="data-card-description">Rating</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-card-value">{{ output['reviews'] }}</div>
+                    <div class="data-card-description">Total Reviews</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-card-value">{{ output['num_positve_reviews'] }}</div>
+                    <div class="data-card-description">Total Positive Reviews</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-card-value">{{ output['num_negatve_reviews'] }}</div>
+                    <div class="data-card-description">Total Negative Reviews</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-card-value">{{ output['num_neutral_reviews'] }}</div>
+                    <div class="data-card-description">Total Neutral Reviews</div>
+                </div>
+            </div> 
+            <div class="wordclouds">
+                <div class="wordcloud">
+                    <img src="{{ url_for('static', filename='Images/positive_wordcloud.png') }}" alt="Positive Wordcloud">
+                    <p><b>Positive Sentiment representative words.</b></p>
+                </div>
+                <div class="wordcloud">
+                    <img src="{{ url_for('static', filename='Images/negative_wordcloud.png') }}" alt="Negative Wordcloud">
+                    <p><b>Negative Sentiment representative words.</b></p>
+                </div>
+            </div>
+        </div>
+        <p class="analysis-info">Analysis done on top rated 51 reviews.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
